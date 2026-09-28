@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Customer - SALONIX WHOLESALERS</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #1f2937;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.12);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+        }
+
+        .shop-name {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: .3px;
+        }
+
+        .shop-location {
+            font-size: 12px;
+            opacity: .9;
+            margin-top: 3px;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+
+            border: 1px solid
+                rgba(255,255,255,.4);
+
+            padding: 8px 12px;
+            border-radius: 7px;
+
+            transition: .2s;
+        }
+
+        .logout:hover {
+            background:
+                rgba(255,255,255,.15);
+        }
+
+        /* NAVIGATION */
+
+        .navbar {
+            background: white;
+            padding: 12px 20px;
+
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #475569;
+
+            padding: 9px 13px;
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: .2s;
+        }
+
+        .navbar a:hover {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .navbar .active {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            padding: 30px 18px;
+        }
+
+        /* PAGE TITLE */
+
+        .page-title {
+            margin-bottom: 22px;
+
+            animation:
+                fadeDown .5s ease;
+        }
+
+        .page-title h1 {
+            margin: 0;
+            font-size: 29px;
+        }
+
+        .page-title p {
+            margin-top: 8px;
+            color: #64748b;
+        }
+
+        /* CARD */
+
+        .card {
+            background: white;
+            padding: 25px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 6px 25px
+                rgba(15,23,42,.07);
+
+            animation:
+                fadeUp .5s ease;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            color: #374151;
+
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dbe2ea;
+
+            border-radius: 9px;
+
+            background: #f8fafc;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: .2s;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        input:focus,
+        textarea:focus {
+            background: white;
+
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(99,102,241,.08);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .help {
+            margin-top: 6px;
+
+            font-size: 12px;
+
+            color: #64748b;
+        }
+
+        /* BUTTONS */
+
+        .actions {
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        .button {
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition: .2s;
+
+            text-align: center;
+        }
+
+        .save-button {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            flex: 1;
+        }
+
+        .save-button:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(79,70,229,.25);
+        }
+
+        .back-button {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .back-button:hover {
+            background: #dbe1e8;
+        }
+
+        /* INFO */
+
+        .info-box {
+            margin-top: 20px;
+
+            background: #eef2ff;
+
+            color: #3730a3;
+
+            padding: 13px 15px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(-15px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:650px) {
+
+            .header {
+                padding: 13px 15px;
+            }
+
+            .shop-name {
+                font-size: 15px;
+            }
+
+            .shop-location {
+                font-size: 10px;
+            }
+
+            .logo-icon {
+                font-size: 22px;
+            }
+
+            .user-area {
+                font-size: 11px;
+                gap: 6px;
+            }
+
+            .navbar {
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .navbar a {
+                text-align: center;
+            }
+
+            .container {
+                padding:
+                    22px 12px;
+            }
+
+            .page-title h1 {
+                font-size: 25px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="logo-icon">
+            🧾
+        </div>
+
+        <div>
+
+            <div class="shop-name">
+                SALONIX WHOLESALERS
+            </div>
+
+            <div class="shop-location">
+                📍 ALIYANAGAR
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="user-area">
+
+        👤 {{ session.get("username") }}
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('dashboard') }}">
+        🏠 Dashboard
+    </a>
+
+    <a
+        href="{{ url_for('customers') }}"
+        class="active"
+    >
+        👥 Customers
+    </a>
+
+    <a href="{{ url_for('products') }}">
+        📦 Products
+    </a>
+
+    <a href="{{ url_for('create_bill') }}">
+        🧾 Create Bill
+    </a>
+
+    <a href="{{ url_for('pending') }}">
+        💰 Pending
+    </a>
+
+    <a href="{{ url_for('bills') }}">
+        📋 Bills
+    </a>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+            ➕ Add New Customer
+        </h1>
+
+        <p>
+            Add customer details to
+            SALONIX WHOLESALERS billing system.
+        </p>
+
+    </div>
+
+
+
+    <!-- FORM CARD -->
+
+    <div class="card">
+
+
+        <form method="POST">
+
+
+            <!-- CUSTOMER NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+
+                    Customer Name
+                    <span class="required">*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter customer full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label for="mobile">
+
+                    Mobile Number
+                    <span class="required">*</span>
+
+                </label>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    name="mobile"
+                    placeholder="Enter 10 digit mobile number"
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    required
+                >
+
+                <div class="help">
+
+                    📱 Enter a valid 10-digit mobile number.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ADDRESS -->
+
+            <div class="form-group">
+
+                <label for="address">
+
+                    Customer Address
+
+                </label>
+
+                <textarea
+                    id="address"
+                    name="address"
+                    placeholder="Enter customer address"
+                    autocomplete="street-address"
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="actions">
+
+                <a
+                    href="{{ url_for('customers') }}"
+                    class="button back-button"
+                >
+                    ← Back
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="button save-button"
+                >
+                    💾 Save Customer
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+
+        <div class="info-box">
+
+            💡 <strong>SALONIX WHOLESALERS:</strong>
+            Customer details will be saved and available
+            while creating bills.
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+    /* MOBILE NUMBER */
+
+    const mobile =
+        document.getElementById("mobile");
+
+
+    mobile.addEventListener(
+        "input",
+        function () {
+
+            this.value =
+                this.value
+                .replace(/\D/g, "")
+                .slice(0, 10);
+
+        }
+    );
+
+
+    /* SAVE BUTTON */
+
+    const form =
+        document.querySelector("form");
+
+
+    form.addEventListener(
+        "submit",
+        function () {
+
+            const button =
+                document.querySelector(
+                    ".save-button"
+                );
+
+
+            button.innerHTML =
+                "⏳ Saving Customer...";
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Invoice #{{ bill["id"] }} - SALONIX WHOLESALERS ALIYANAGAR
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f4f6fb;
+
+            color: #1f2937;
+
+        }
+
+
+        /* =================================================
+           HEADER
+        ================================================= */
+
+        .header {
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            padding: 15px 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,.12);
+
+        }
+
+
+        .brand-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .brand {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+        }
+
+
+        .shop-name {
+
+            font-size: 13px;
+
+            margin-top: 3px;
+
+            opacity: .9;
+
+        }
+
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 14px;
+
+        }
+
+
+        .logout {
+
+            color: white;
+
+            text-decoration: none;
+
+            border:
+                1px solid
+                rgba(255,255,255,.45);
+
+            padding: 8px 12px;
+
+            border-radius: 7px;
+
+            transition: .2s;
+
+        }
+
+
+        .logout:hover {
+
+            background:
+                rgba(255,255,255,.15);
+
+        }
+
+
+        /* =================================================
+           NAVBAR
+        ================================================= */
+
+        .navbar {
+
+            background: white;
+
+            padding: 12px 20px;
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .navbar a {
+
+            text-decoration: none;
+
+            color: #475569;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: .2s;
+
+        }
+
+
+        .navbar a:hover {
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+        }
+
+
+        .navbar .active {
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+        }
+
+
+        /* =================================================
+           INVOICE
+        ================================================= */
+
+        .invoice {
+
+            max-width: 850px;
+
+            margin: 30px auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 6px 25px
+                rgba(15,23,42,.08);
+
+            animation:
+                fadeUp .4s ease;
+
+        }
+
+
+        /* =================================================
+           INVOICE HEADER
+        ================================================= */
+
+        .invoice-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 20px;
+
+            border-bottom:
+                2px solid #222;
+
+            padding-bottom: 20px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .invoice-shop-name {
+
+            font-size: 27px;
+
+            font-weight: bold;
+
+            color: #4f46e5;
+
+        }
+
+
+        .invoice-subtitle {
+
+            color: #64748b;
+
+            margin-top: 6px;
+
+            font-size: 14px;
+
+        }
+
+
+        .invoice-title {
+
+            text-align: right;
+
+        }
+
+
+        .invoice-title h2 {
+
+            margin: 0 0 8px 0;
+
+            font-size: 25px;
+
+        }
+
+
+        .invoice-title p {
+
+            margin: 5px 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =================================================
+           CUSTOMER CARD
+        ================================================= */
+
+        .customer-details {
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            padding: 18px;
+
+            margin-bottom: 25px;
+
+            border:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .customer-details h3 {
+
+            margin-top: 0;
+
+            margin-bottom: 12px;
+
+            font-size: 18px;
+
+        }
+
+
+        .customer-details p {
+
+            margin: 7px 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =================================================
+           TABLE
+        ================================================= */
+
+        .invoice-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 20px;
+
+        }
+
+
+        .invoice-table th,
+        .invoice-table td {
+
+            border:
+                1px solid #dbe2ea;
+
+            padding: 11px;
+
+            text-align: left;
+
+        }
+
+
+        .invoice-table th {
+
+            background: #f1f5f9;
+
+            font-weight: bold;
+
+        }
+
+
+        .invoice-table tbody tr:hover {
+
+            background: #f8fafc;
+
+        }
+
+
+        .invoice-table .right {
+
+            text-align: right;
+
+        }
+
+
+        /* =================================================
+           SUMMARY
+        ================================================= */
+
+        .invoice-summary {
+
+            max-width: 360px;
+
+            margin-left: auto;
+
+            margin-top: 25px;
+
+        }
+
+
+        .summary-line {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 8px 0;
+
+            font-size: 15px;
+
+        }
+
+
+        .grand-total {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            border-top:
+                2px solid #222;
+
+            padding-top: 13px;
+
+        }
+
+
+        .paid {
+
+            color: #16a34a;
+
+            font-weight: bold;
+
+        }
+
+
+        .pending {
+
+            color: #dc2626;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =================================================
+           STATUS
+        ================================================= */
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+        }
+
+
+        .status-paid {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+
+        .status-pending {
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        .invoice-footer {
+
+            text-align: center;
+
+            margin-top: 40px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =================================================
+           BUTTONS
+        ================================================= */
+
+        .invoice-actions {
+
+            max-width: 850px;
+
+            margin: 20px auto 40px;
+
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .button {
+
+            display: inline-block;
+
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition: .2s;
+
+        }
+
+
+        .primary-button {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+        }
+
+
+        .primary-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(79,70,229,.25);
+
+        }
+
+
+        .secondary-button {
+
+            background: #e5e7eb;
+
+            color: #374151;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background: #dbe1e8;
+
+        }
+
+
+        /* =================================================
+           ANIMATION
+        ================================================= */
+
+        @keyframes fadeUp {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
+        @media(max-width:700px) {
+
+
+            .header {
+
+                padding:
+                    13px 15px;
+
+            }
+
+
+            .brand {
+
+                font-size: 17px;
+
+            }
+
+
+            .shop-name {
+
+                font-size: 11px;
+
+            }
+
+
+            .user-area {
+
+                font-size: 11px;
+
+                gap: 6px;
+
+            }
+
+
+            .logout {
+
+                padding:
+                    6px 9px;
+
+            }
+
+
+            .navbar {
+
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .navbar a {
+
+                text-align: center;
+
+            }
+
+
+            .invoice {
+
+                margin:
+                    18px 12px;
+
+                padding: 18px;
+
+                border-radius: 12px;
+
+            }
+
+
+            .invoice-header {
+
+                flex-direction: column;
+
+            }
+
+
+            .invoice-title {
+
+                text-align: left;
+
+            }
+
+
+            .invoice-shop-name {
+
+                font-size: 22px;
+
+            }
+
+
+            .invoice-table {
+
+                font-size: 12px;
+
+            }
+
+
+            .invoice-table th,
+            .invoice-table td {
+
+                padding: 7px;
+
+            }
+
+
+            .invoice-summary {
+
+                max-width: 100%;
+
+            }
+
+
+            .invoice-actions {
+
+                margin:
+                    15px 12px 30px;
+
+                flex-direction: column;
+
+            }
+
+
+            .button {
+
+                width: 100%;
+
+                text-align: center;
+
+            }
+
+        }
+
+
+        /* =================================================
+           PRINT
+        ================================================= */
+
+        @media print {
+
+
+            body {
+
+                background: white;
+
+            }
+
+
+            .header,
+            .navbar,
+            .invoice-actions {
+
+                display: none !important;
+
+            }
+
+
+            .invoice {
+
+                box-shadow: none;
+
+                margin: 0;
+
+                max-width: 100%;
+
+                padding: 10px;
+
+            }
+
+
+            .invoice-table th {
+
+                background: #f5f5f5 !important;
+
+                -webkit-print-color-adjust:
+                    exact;
+
+                print-color-adjust:
+                    exact;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+
+    <div class="brand-area">
+
+
+        <div class="brand">
+
+            🧾 SmartBill
+
+        </div>
+
+
+        <div class="shop-name">
+
+            SALONIX WHOLESALERS ALIYANAGAR
+
+        </div>
+
+
+    </div>
+
+
+    <div class="user-area">
+
+        👤 {{ session.get("username") }}
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+
+    <a href="{{ url_for('dashboard') }}">
+
+        🏠 Dashboard
+
+    </a>
+
+
+    <a href="{{ url_for('customers') }}">
+
+        👥 Customers
+
+    </a>
+
+
+    <a href="{{ url_for('products') }}">
+
+        📦 Products
+
+    </a>
+
+
+    <a href="{{ url_for('create_bill') }}">
+
+        🧾 Create Bill
+
+    </a>
+
+
+    <a href="{{ url_for('pending') }}">
+
+        💰 Pending
+
+    </a>
+
+
+    <a
+        href="{{ url_for('bills') }}"
+        class="active"
+    >
+
+        📋 Bills
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     INVOICE
+===================================================== -->
+
+<div class="invoice">
+
+
+    <!-- INVOICE HEADER -->
+
+    <div class="invoice-header">
+
+
+        <div>
+
+
+            <div class="invoice-shop-name">
+
+                SALONIX WHOLESALERS ALIYANAGAR
+
+            </div>
+
+
+            <div class="invoice-subtitle">
+
+                Billing & Invoice
+
+            </div>
+
+
+        </div>
+
+
+        <div class="invoice-title">
+
+
+            <h2>
+
+                INVOICE
+
+            </h2>
+
+
+            <p>
+
+                Bill No:
+
+                <strong>
+
+                    #{{ bill["id"] }}
+
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                Date:
+
+                {{ bill["bill_date"] }}
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- CUSTOMER DETAILS -->
+
+    <div class="customer-details">
+
+
+        <h3>
+
+            👤 Customer Details
+
+        </h3>
+
+
+        <p>
+
+            <strong>Name:</strong>
+
+            {{ bill["customer_name"] }}
+
+        </p>
+
+
+        <p>
+
+            <strong>Mobile:</strong>
+
+            {{ bill["mobile"] }}
+
+        </p>
+
+
+        <p>
+
+            <strong>Address:</strong>
+
+            {{ bill["address"] or "-" }}
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- PRODUCTS TABLE -->
+
+    <table class="invoice-table">
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    #
+                </th>
+
+                <th>
+                    Product
+                </th>
+
+                <th class="right">
+                    Price
+                </th>
+
+                <th class="right">
+                    Qty
+                </th>
+
+                <th class="right">
+                    Amount
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            {% for item in items %}
+
+
+            <tr>
+
+
+                <td>
+
+                    {{ loop.index }}
+
+                </td>
+
+
+                <td>
+
+                    {{ item["product_name"] }}
+
+                </td>
+
+
+                <td class="right">
+
+                    ₹{{ "%.2f"|format(item["price"]) }}
+
+                </td>
+
+
+                <td class="right">
+
+                    {{ item["quantity"] }}
+
+                </td>
+
+
+                <td class="right">
+
+                    ₹{{ "%.2f"|format(item["amount"]) }}
+
+                </td>
+
+
+            </tr>
+
+
+            {% endfor %}
+
+
+        </tbody>
+
+
+    </table>
+
+
+
+    <!-- SUMMARY -->
+
+    <div class="invoice-summary">
+
+
+        <div class="summary-line grand-total">
+
+
+            <span>
+
+                Total
+
+            </span>
+
+
+            <span>
+
+                ₹{{ "%.2f"|format(bill["total"]) }}
+
+            </span>
+
+
+        </div>
+
+
+        <div class="summary-line">
+
+
+            <span>
+
+                Paid
+
+            </span>
+
+
+            <span class="paid">
+
+                ₹{{ "%.2f"|format(bill["paid"]) }}
+
+            </span>
+
+
+        </div>
+
+
+        <div class="summary-line">
+
+
+            <span>
+
+                Remaining
+
+            </span>
+
+
+            <span class="pending">
+
+                ₹{{ "%.2f"|format(bill["remaining"]) }}
+
+            </span>
+
+
+        </div>
+
+
+        <div class="summary-line">
+
+
+            <span>
+
+                Payment Status
+
+            </span>
+
+
+            <span>
+
+
+                {% if bill["payment_status"] == "PAID" %}
+
+
+                    <span class="status status-paid">
+
+                        ✓ PAID
+
+                    </span>
+
+
+                {% else %}
+
+
+                    <span class="status status-pending">
+
+                        ⏳ PENDING
+
+                    </span>
+
+
+                {% endif %}
+
+
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="invoice-footer">
+
+
+        <strong>
+
+            SALONIX WHOLESALERS ALIYANAGAR
+
+        </strong>
+
+
+        <br>
+
+
+        Thank you for your business! 🙏
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     ACTION BUTTONS
+===================================================== -->
+
+<div class="invoice-actions">
+
+
+    <button
+        onclick="window.print()"
+        class="button primary-button"
+    >
+
+        🖨️ Print Bill
+
+    </button>
+
+
+    <a
+        href="{{ url_for('create_bill') }}"
+        class="button secondary-button"
+    >
+
+        ➕ New Bill
+
+    </a>
+
+
+    <a
+        href="{{ url_for('bills') }}"
+        class="button secondary-button"
+    >
+
+        📋 Bill History
+
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>

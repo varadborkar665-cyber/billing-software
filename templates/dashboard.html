@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | SmartBill</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                #f5f7fb;
+
+            color: #1e293b;
+
+        }
+
+
+        /* =========================
+           TOP HEADER
+        ========================= */
+
+        .topbar {
+
+            height: 70px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 30px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(
+                    79,
+                    70,
+                    229,
+                    0.20
+                );
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .brand {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing:
+                0.2px;
+
+        }
+
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            font-size: 14px;
+
+        }
+
+
+        .logout {
+
+            text-decoration: none;
+
+            color: white;
+
+            padding:
+                8px 14px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.35
+                );
+
+            border-radius: 8px;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .logout:hover {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.15
+                );
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            background: white;
+
+            display: flex;
+
+            gap: 5px;
+
+            padding:
+                10px 25px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            overflow-x: auto;
+
+            scrollbar-width: none;
+
+        }
+
+
+        .navbar::-webkit-scrollbar {
+
+            display: none;
+
+        }
+
+
+        .navbar a {
+
+            text-decoration: none;
+
+            color: #475569;
+
+            padding:
+                10px 14px;
+
+            border-radius: 9px;
+
+            white-space: nowrap;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .navbar a:hover {
+
+            background:
+                #eef2ff;
+
+            color:
+                #4f46e5;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            max-width: 1250px;
+
+            margin:
+                0 auto;
+
+            padding:
+                30px;
+
+        }
+
+
+        .page-title {
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            color: #111827;
+
+        }
+
+
+        .welcome {
+
+            color: #64748b;
+
+            margin-top: 5px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           DASHBOARD CARDS
+        ========================= */
+
+        .dashboard-cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap: 20px;
+
+        }
+
+
+        .dashboard-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 17px;
+
+            border:
+                1px solid #eef0f4;
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.06
+                );
+
+            transition:
+                0.3s ease;
+
+            animation:
+                cardEntry
+                0.6s ease
+                both;
+
+        }
+
+
+        .dashboard-card:nth-child(2) {
+
+            animation-delay:
+                0.1s;
+
+        }
+
+
+        .dashboard-card:nth-child(3) {
+
+            animation-delay:
+                0.2s;
+
+        }
+
+
+        .dashboard-card:nth-child(4) {
+
+            animation-delay:
+                0.3s;
+
+        }
+
+
+        .dashboard-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.10
+                );
+
+        }
+
+
+        @keyframes cardEntry {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .card-icon {
+
+            min-width: 58px;
+
+            height: 58px;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 27px;
+
+            background:
+                #eef2ff;
+
+        }
+
+
+        .dashboard-card p {
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .dashboard-card h3 {
+
+            font-size: 24px;
+
+            color: #111827;
+
+        }
+
+
+        .pending-card {
+
+            border:
+                1px solid
+                #fee2e2;
+
+        }
+
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-title {
+
+            margin-top: 38px;
+
+            margin-bottom: 18px;
+
+            font-size: 21px;
+
+            color: #111827;
+
+        }
+
+
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
+
+        .quick-actions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap: 18px;
+
+        }
+
+
+        .quick-button {
+
+            background: white;
+
+            text-decoration: none;
+
+            color: #1e293b;
+
+            padding: 22px;
+
+            border-radius: 16px;
+
+            border:
+                1px solid #eef0f4;
+
+            box-shadow:
+                0 7px 22px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.05
+                );
+
+            display: flex;
+
+            flex-direction: column;
+
+            transition:
+                0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .quick-button::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 4px;
+
+            height: 100%;
+
+            background:
+                #6366f1;
+
+            transform:
+                scaleY(0);
+
+            transform-origin:
+                bottom;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .quick-button:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.09
+                );
+
+        }
+
+
+        .quick-button:hover::before {
+
+            transform:
+                scaleY(1);
+
+        }
+
+
+        .quick-button span {
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .quick-button strong {
+
+            font-size: 16px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .quick-button small {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .dashboard-cards {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+
+            .quick-actions {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .topbar {
+
+                height: auto;
+
+                min-height: 65px;
+
+                padding:
+                    12px 16px;
+
+                gap: 10px;
+
+            }
+
+
+            .brand {
+
+                font-size: 18px;
+
+            }
+
+
+            .user-area {
+
+                font-size: 12px;
+
+                gap: 7px;
+
+            }
+
+
+            .logout {
+
+                padding:
+                    7px 10px;
+
+            }
+
+
+            .navbar {
+
+                padding:
+                    8px 12px;
+
+            }
+
+
+            .navbar a {
+
+                font-size: 12px;
+
+                padding:
+                    9px 11px;
+
+            }
+
+
+            .container {
+
+                padding:
+                    20px 15px;
+
+            }
+
+
+            .page-title {
+
+                font-size: 25px;
+
+            }
+
+
+            .dashboard-cards {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 13px;
+
+            }
+
+
+            .quick-actions {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 13px;
+
+            }
+
+
+            .dashboard-card {
+
+                padding: 18px;
+
+            }
+
+
+            .section-title {
+
+                margin-top: 30px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     TOP HEADER
+========================= -->
+
+<header class="topbar">
+
+
+    <div class="brand">
+
+        🧾 SmartBill
+
+    </div>
+
+
+    <div class="user-area">
+
+        👤
+
+        <span>
+            {{ session.get('username') }}
+        </span>
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="navbar">
+
+
+    <a href="{{ url_for('dashboard') }}">
+
+        🏠 Dashboard
+
+    </a>
+
+
+    <a href="{{ url_for('customers') }}">
+
+        👥 Customers
+
+    </a>
+
+
+    <a href="{{ url_for('products') }}">
+
+        📦 Products
+
+    </a>
+
+
+    <a href="{{ url_for('create_bill') }}">
+
+        🧾 Create Bill
+
+    </a>
+
+
+    <a href="{{ url_for('pending') }}">
+
+        💰 Pending
+
+    </a>
+
+
+    <a href="{{ url_for('bills') }}">
+
+        📋 Bills
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+    <h1 class="page-title">
+
+        Dashboard
+
+    </h1>
+
+
+    <p class="welcome">
+
+        Welcome back,
+        <strong>
+            {{ session.get('username') }}
+        </strong>
+        👋
+
+    </p>
+
+
+
+    <!-- =========================
+         STATISTICS
+    ========================= -->
+
+    <div class="dashboard-cards">
+
+
+        <!-- Customers -->
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+
+                👥
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    Total Customers
+                </p>
+
+                <h3>
+                    {{ customer_count }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Bills -->
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+
+                🧾
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    Total Bills
+                </p>
+
+                <h3>
+                    {{ bill_count }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Sales -->
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+
+                💵
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    Today's Sales
+                </p>
+
+                <h3>
+
+                    ₹{{ "%.2f"|format(
+                        today_sales
+                    ) }}
+
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Pending -->
+
+        <div class="dashboard-card pending-card">
+
+            <div class="card-icon">
+
+                ⚠️
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    Pending Amount
+                </p>
+
+                <h3>
+
+                    ₹{{ "%.2f"|format(
+                        pending
+                    ) }}
+
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         QUICK ACTIONS
+    ========================= -->
+
+    <h2 class="section-title">
+
+        Quick Actions
+
+    </h2>
+
+
+    <div class="quick-actions">
+
+
+        <!-- Add Customer -->
+
+        <a
+            href="{{ url_for('add_customer') }}"
+            class="quick-button"
+        >
+
+            <span>
+                👤
+            </span>
+
+            <strong>
+                Add Customer
+            </strong>
+
+            <small>
+                Add a new customer
+            </small>
+
+        </a>
+
+
+
+        <!-- Create Bill -->
+
+        <a
+            href="{{ url_for('create_bill') }}"
+            class="quick-button"
+        >
+
+            <span>
+                🧾
+            </span>
+
+            <strong>
+                Create Bill
+            </strong>
+
+            <small>
+                Generate a new invoice
+            </small>
+
+        </a>
+
+
+
+        <!-- Customers -->
+
+        <a
+            href="{{ url_for('customers') }}"
+            class="quick-button"
+        >
+
+            <span>
+                👥
+            </span>
+
+            <strong>
+                Customers
+            </strong>
+
+            <small>
+                View and manage customers
+            </small>
+
+        </a>
+
+
+
+        <!-- Products -->
+
+        <a
+            href="{{ url_for('products') }}"
+            class="quick-button"
+        >
+
+            <span>
+                📦
+            </span>
+
+            <strong>
+                Products
+            </strong>
+
+            <small>
+                Manage your products
+            </small>
+
+        </a>
+
+
+
+        <!-- Pending -->
+
+        <a
+            href="{{ url_for('pending') }}"
+            class="quick-button"
+        >
+
+            <span>
+                💰
+            </span>
+
+            <strong>
+                Pending Payments
+            </strong>
+
+            <small>
+                Check remaining payments
+            </small>
+
+        </a>
+
+
+
+        <!-- Bills -->
+
+        <a
+            href="{{ url_for('bills') }}"
+            class="quick-button"
+        >
+
+            <span>
+                📋
+            </span>
+
+            <strong>
+                Bill History
+            </strong>
+
+            <small>
+                View all generated bills
+            </small>
+
+        </a>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

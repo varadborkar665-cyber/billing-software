@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customers - SmartBill</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #4f46e5;
+            color: white;
+            padding: 16px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 12px;
+            border-radius: 7px;
+        }
+
+        .logout:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .title p {
+            color: #666;
+            margin-top: 6px;
+        }
+
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            border: none;
+            padding: 11px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .blue {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .green {
+            background: #16a34a;
+            color: white;
+        }
+
+        .gray {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+
+        /* SEARCH */
+
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #ddd;
+            border-radius: 7px;
+
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #4f46e5;
+        }
+
+
+        /* TABLE */
+
+        .table-box {
+            background: white;
+            border-radius: 10px;
+            overflow-x: auto;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th {
+            background: #f1f3f7;
+            padding: 14px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 14px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #fafbff;
+        }
+
+        .customer-name {
+            font-weight: bold;
+        }
+
+        .mobile {
+            color: #2563eb;
+        }
+
+        .address {
+            color: #555;
+        }
+
+
+        /* EMPTY */
+
+        .empty {
+            background: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 10px;
+        }
+
+        .empty-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .empty h2 {
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 600px) {
+
+            .header {
+                padding: 14px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .user {
+                font-size: 12px;
+                gap: 7px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .top-section {
+                display: block;
+            }
+
+            .top-section .btn {
+                margin-top: 15px;
+            }
+
+            .title h1 {
+                font-size: 24px;
+            }
+
+            .buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .buttons .btn {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+
+        🧾 SmartBill
+
+    </div>
+
+
+    <div class="user">
+
+        👤 {{ session.get("username") }}
+
+        <a
+            class="logout"
+            href="{{ url_for('logout') }}"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TITLE -->
+
+    <div class="top-section">
+
+        <div class="title">
+
+            <h1>
+                👥 Customers
+            </h1>
+
+            <p>
+                Manage your shop customers
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('add_customer') }}"
+            class="btn green"
+        >
+            ➕ Add Customer
+        </a>
+
+    </div>
+
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="btn gray"
+        >
+            🏠 Dashboard
+        </a>
+
+
+        <a
+            href="{{ url_for('add_customer') }}"
+            class="btn green"
+        >
+            ➕ Add Customer
+        </a>
+
+
+        <a
+            href="{{ url_for('create_bill') }}"
+            class="btn blue"
+        >
+            🧾 Create Bill
+        </a>
+
+    </div>
+
+
+
+    {% if customers %}
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔍 Search customer..."
+            onkeyup="searchCustomer()"
+        >
+
+    </div>
+
+
+
+    <!-- CUSTOMER TABLE -->
+
+    <div class="table-box">
+
+        <table id="customerTable">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Customer Name
+                    </th>
+
+                    <th>
+                        Mobile
+                    </th>
+
+                    <th>
+                        Address
+                    </th>
+
+                    <th>
+                        Added Date
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for customer in customers %}
+
+                <tr>
+
+
+                    <td>
+                        {{ customer["id"] }}
+                    </td>
+
+
+                    <td class="customer-name">
+
+                        👤
+                        {{ customer["name"] }}
+
+                    </td>
+
+
+                    <td class="mobile">
+
+                        📱
+                        {{ customer["mobile"] }}
+
+                    </td>
+
+
+                    <td class="address">
+
+                        📍
+                        {{ customer["address"] or "-" }}
+
+                    </td>
+
+
+                    <td>
+
+                        📅
+                        {{ customer["created_at"] }}
+
+                    </td>
+
+
+                </tr>
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- NO CUSTOMER -->
+
+    <div class="empty">
+
+        <div class="empty-icon">
+            👥
+        </div>
+
+
+        <h2>
+            No Customers Found
+        </h2>
+
+
+        <p>
+            You have not added any customers yet.
+        </p>
+
+
+        <a
+            href="{{ url_for('add_customer') }}"
+            class="btn green"
+        >
+            ➕ Add First Customer
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+
+<script>
+
+function searchCustomer() {
+
+    let input =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+
+    let table =
+        document
+        .getElementById("customerTable");
+
+
+    if (!table) {
+        return;
+    }
+
+
+    let rows =
+        table
+        .getElementsByTagName("tr");
+
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let text =
+            rows[i]
+            .innerText
+            .toLowerCase();
+
+
+        if (text.includes(input)) {
+
+            rows[i].style.display = "";
+
+        } else {
+
+            rows[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

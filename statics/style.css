@@ -1,0 +1,546 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #f5f7fb;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+}
+
+.login-icon {
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-box h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #d5d9e0;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2563eb;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group small {
+    color: #777;
+    display: block;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.primary-button,
+.secondary-button,
+.login-button {
+    display: inline-block;
+    border: none;
+    border-radius: 7px;
+    padding: 11px 18px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.primary-button,
+.login-button {
+    background: #2563eb;
+    color: white;
+}
+
+.primary-button:hover,
+.login-button:hover {
+    background: #1d4ed8;
+}
+
+.secondary-button {
+    background: #e5e7eb;
+    color: #222;
+}
+
+.secondary-button:hover {
+    background: #d1d5db;
+}
+
+.login-button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.topbar {
+    background: #111827;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-area a {
+    background: #374151;
+    padding: 7px 12px;
+    border-radius: 6px;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar {
+    background: white;
+    padding: 10px 25px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar a {
+    padding: 9px 13px;
+    border-radius: 6px;
+    color: #444;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px;
+}
+
+.container h2 {
+    margin-bottom: 5px;
+}
+
+.welcome {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+.card-icon {
+    font-size: 32px;
+}
+
+.dashboard-card p {
+    color: #777;
+    margin-bottom: 3px;
+}
+
+.dashboard-card h3 {
+    font-size: 24px;
+}
+
+.pending-card h3 {
+    color: #d97706;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.section-title {
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.quick-button {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.quick-button:hover {
+    transform: translateY(-2px);
+}
+
+.quick-button span {
+    font-size: 30px;
+}
+
+.quick-button small {
+    color: #777;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.page-header p {
+    color: #777;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.form-card,
+.table-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-card h3 {
+    margin-bottom: 20px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+th {
+    background: #f3f4f6;
+    font-weight: bold;
+}
+
+tr:hover {
+    background: #f9fafb;
+}
+
+
+/* =========================
+   ALERT
+========================= */
+
+.alert {
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin-bottom: 18px;
+}
+
+.alert.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.alert.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.empty-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #777;
+    margin: 10px 0 20px;
+}
+
+
+/* =========================
+   BILL
+========================= */
+
+.payment-card {
+    margin-top: 20px;
+}
+
+.bill-summary {
+    max-width: 450px;
+    margin-left: auto;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 0;
+}
+
+.remaining-row {
+    border-top: 2px solid #ddd;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.delete-button {
+    background: #fee2e2;
+    color: #991b1b;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+.warning-text {
+    color: #b45309;
+    background: #fef3c7;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .user-area {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navbar {
+        padding: 8px;
+        gap: 5px;
+    }
+
+    .navbar a {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-card,
+    .table-card {
+        padding: 18px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button,
+    .form-actions a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+}

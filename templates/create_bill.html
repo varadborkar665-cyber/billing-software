@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Bill - SALONIX WHOLESALERS ALIYANAGAR</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #1f2937;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .shop-name {
+            font-size: 13px;
+            margin-top: 4px;
+            opacity: .9;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 8px 12px;
+            border-radius: 7px;
+        }
+
+        /* NAVIGATION */
+
+        .navbar {
+            background: white;
+            padding: 12px 20px;
+
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #475569;
+
+            padding: 9px 13px;
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover,
+        .navbar .active {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 30px 18px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        /* CARD */
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+
+            margin-bottom: 20px;
+        }
+
+        /* FORM */
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+
+            font-size: 15px;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        /* PRODUCT ROW */
+
+        .product-row {
+            display: grid;
+
+            grid-template-columns:
+                2fr
+                1fr
+                100px
+                120px
+                45px;
+
+            gap: 10px;
+
+            align-items: end;
+
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            margin-bottom: 12px;
+        }
+
+        .product-row input[readonly] {
+            background: #eeeeee;
+        }
+
+        .remove-btn {
+            width: 45px;
+            height: 43px;
+
+            border: none;
+
+            background: #dc2626;
+            color: white;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 20px;
+        }
+
+        .remove-btn:hover {
+            background: #b91c1c;
+        }
+
+        /* ADD PRODUCT */
+
+        .add-button {
+            background: #16a34a;
+            color: white;
+
+            border: none;
+
+            padding: 11px 17px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .add-button:hover {
+            background: #15803d;
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            margin-top: 25px;
+
+            background: #f8fafc;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            border: 1px solid #e5e7eb;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 8px 0;
+
+            font-size: 16px;
+        }
+
+        .total-row {
+            border-top: 1px solid #ddd;
+
+            margin-top: 10px;
+
+            padding-top: 15px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+        }
+
+        .paid {
+            color: #16a34a;
+        }
+
+        .remaining {
+            color: #dc2626;
+        }
+
+        /* CREATE BUTTON */
+
+        .create-button {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .create-button:hover {
+            opacity: .9;
+        }
+
+        .create-button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        /* EMPTY */
+
+        .empty {
+            background: #fff7ed;
+
+            color: #9a3412;
+
+            padding: 18px;
+
+            border-radius: 9px;
+
+            margin-bottom: 20px;
+        }
+
+        .empty a {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            background: #ea580c;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 9px 13px;
+
+            border-radius: 6px;
+        }
+
+        /* FLASH */
+
+        .flash {
+            padding: 12px;
+
+            margin-bottom: 15px;
+
+            border-radius: 8px;
+
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            .header {
+                padding: 12px 15px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .shop-name {
+                font-size: 11px;
+            }
+
+            .user-area {
+                font-size: 12px;
+            }
+
+            .navbar {
+                display: grid;
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .navbar a {
+                text-align: center;
+            }
+
+            .container {
+                padding: 20px 12px;
+            }
+
+            .card {
+                padding: 17px;
+            }
+
+            .product-row {
+                grid-template-columns: 1fr;
+            }
+
+            .remove-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div>
+
+        <div class="logo">
+            🧾 SmartBill
+        </div>
+
+        <div class="shop-name">
+            SALONIX WHOLESALERS ALIYANAGAR
+        </div>
+
+    </div>
+
+
+    <div class="user-area">
+
+        👤 {{ session.get("username") }}
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('dashboard') }}">
+        🏠 Dashboard
+    </a>
+
+    <a href="{{ url_for('customers') }}">
+        👥 Customers
+    </a>
+
+    <a href="{{ url_for('products') }}">
+        📦 Products
+    </a>
+
+    <a
+        href="{{ url_for('create_bill') }}"
+        class="active"
+    >
+        🧾 Create Bill
+    </a>
+
+    <a href="{{ url_for('pending') }}">
+        💰 Pending
+    </a>
+
+    <a href="{{ url_for('bills') }}">
+        📋 Bills
+    </a>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <h1>
+        🧾 Create New Bill
+    </h1>
+
+    <div class="subtitle">
+        SALONIX WHOLESALERS ALIYANAGAR
+    </div>
+
+
+    <!-- FLASH MESSAGE -->
+
+    {% with messages = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+        {% for category, message in messages %}
+
+            <div class="flash">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endwith %}
+
+
+    <!-- NO CUSTOMER -->
+
+    {% if not customers %}
+
+        <div class="empty">
+
+            <strong>
+                ⚠️ No customers found.
+            </strong>
+
+            <br>
+
+            Add a customer first.
+
+            <br>
+
+            <a href="{{ url_for('add_customer') }}">
+                ➕ Add Customer
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- NO PRODUCT -->
+
+    {% if not products %}
+
+        <div class="empty">
+
+            <strong>
+                ⚠️ No products found.
+            </strong>
+
+            <br>
+
+            Add a product first.
+
+            <br>
+
+            <a href="{{ url_for('products') }}">
+                📦 Add Product
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- BILL FORM -->
+
+    {% if customers and products %}
+
+    <div class="card">
+
+        <form
+            method="POST"
+            action="{{ url_for('create_bill') }}"
+            id="billForm"
+        >
+
+
+            <!-- CUSTOMER -->
+
+            <div class="form-group">
+
+                <label>
+                    👤 Select Customer
+                </label>
+
+                <select
+                    name="customer_id"
+                    required
+                >
+
+                    <option value="">
+                        -- Select Customer --
+                    </option>
+
+                    {% for customer in customers %}
+
+                        <option
+                            value="{{ customer['id'] }}"
+                        >
+
+                            {{ customer['name'] }}
+                            -
+                            {{ customer['mobile'] }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- PRODUCTS -->
+
+            <div class="form-group">
+
+                <label>
+                    📦 Products
+                </label>
+
+
+                <div id="productsContainer">
+
+
+                    <!-- PRODUCT ROW -->
+
+                    <div class="product-row">
+
+
+                        <!-- PRODUCT -->
+
+                        <div>
+
+                            <label>
+                                Product
+                            </label>
+
+                            <select
+                                name="product_id[]"
+                                class="product-select"
+                                required
+                            >
+
+                                <option value="">
+                                    -- Select Product --
+                                </option>
+
+
+                                {% for product in products %}
+
+                                    <option
+                                        value="{{ product['id'] }}"
+                                        data-name="{{ product['name'] }}"
+                                        data-price="{{ product['price'] }}"
+                                    >
+
+                                        {{ product['name'] }}
+                                        -
+                                        ₹{{ "%.2f"|format(product['price']) }}
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+
+                            <!-- IMPORTANT -->
+
+                            <input
+                                type="hidden"
+                                name="product_name[]"
+                                class="product-name"
+                            >
+
+                        </div>
+
+
+                        <!-- PRICE -->
+
+                        <div>
+
+                            <label>
+                                Price
+                            </label>
+
+                            <input
+                                type="number"
+                                name="price[]"
+                                class="price"
+                                value="0"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- QUANTITY -->
+
+                        <div>
+
+                            <label>
+                                Qty
+                            </label>
+
+                            <input
+                                type="number"
+                                name="quantity[]"
+                                class="quantity"
+                                value="1"
+                                min="1"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- AMOUNT -->
+
+                        <div>
+
+                            <label>
+                                Amount
+                            </label>
+
+                            <input
+                                type="text"
+                                class="amount"
+                                value="₹0.00"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <!-- REMOVE -->
+
+                        <button
+                            type="button"
+                            class="remove-btn"
+                        >
+                            ×
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <button
+                    type="button"
+                    class="add-button"
+                    id="addProductBtn"
+                >
+
+                    ➕ Add Another Product
+
+                </button>
+
+            </div>
+
+
+            <!-- PAID -->
+
+            <div class="form-group">
+
+                <label>
+                    💵 Paid Amount
+                </label>
+
+                <input
+                    type="number"
+                    name="paid"
+                    id="paid"
+                    value="0"
+                    min="0"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="summary">
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong id="total">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Paid Amount
+                    </span>
+
+                    <strong
+                        id="paidDisplay"
+                        class="paid"
+                    >
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row total-row">
+
+                    <span>
+                        Remaining
+                    </span>
+
+                    <strong
+                        id="remaining"
+                        class="remaining"
+                    >
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- CREATE -->
+
+            <button
+                type="submit"
+                class="create-button"
+                id="createButton"
+            >
+
+                🧾 Create Bill
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+    {% endif %}
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   GET PRODUCT DETAILS
+===================================================== */
+
+function updateProduct(row) {
+
+    const select =
+        row.querySelector(".product-select");
+
+    const option =
+        select.options[
+            select.selectedIndex
+        ];
+
+    const name =
+        option.dataset.name || "";
+
+    const price =
+        option.dataset.price || "0";
+
+
+    row.querySelector(
+        ".product-name"
+    ).value = name;
+
+
+    row.querySelector(
+        ".price"
+    ).value = price;
+
+
+    calculateTotal();
+
+}
+
+
+/* =====================================================
+   CALCULATE TOTAL
+===================================================== */
+
+function calculateTotal() {
+
+    let total = 0;
+
+
+    document
+        .querySelectorAll(".product-row")
+        .forEach(function(row) {
+
+            const price =
+                parseFloat(
+                    row.querySelector(".price").value
+                ) || 0;
+
+
+            const quantity =
+                parseInt(
+                    row.querySelector(".quantity").value
+                ) || 0;
+
+
+            const amount =
+                price * quantity;
+
+
+            row.querySelector(
+                ".amount"
+            ).value =
+                "₹" + amount.toFixed(2);
+
+
+            total += amount;
+
+        });
+
+
+    document.getElementById(
+        "total"
+    ).innerText =
+        "₹" + total.toFixed(2);
+
+
+    calculateRemaining();
+
+}
+
+
+/* =====================================================
+   CALCULATE REMAINING
+===================================================== */
+
+function calculateRemaining() {
+
+    const total =
+        parseFloat(
+            document
+                .getElementById("total")
+                .innerText
+                .replace("₹", "")
+        ) || 0;
+
+
+    let paid =
+        parseFloat(
+            document.getElementById("paid").value
+        ) || 0;
+
+
+    if (paid < 0) {
+        paid = 0;
+    }
+
+
+    if (paid > total) {
+        paid = total;
+    }
+
+
+    document.getElementById(
+        "paidDisplay"
+    ).innerText =
+        "₹" + paid.toFixed(2);
+
+
+    const remaining =
+        total - paid;
+
+
+    document.getElementById(
+        "remaining"
+    ).innerText =
+        "₹" + remaining.toFixed(2);
+
+}
+
+
+/* =====================================================
+   PRODUCT SELECT EVENT
+===================================================== */
+
+function attachProductEvents(row) {
+
+    row.querySelector(
+        ".product-select"
+    ).addEventListener(
+        "change",
+        function() {
+
+            updateProduct(row);
+
+        }
+    );
+
+
+    row.querySelector(
+        ".price"
+    ).addEventListener(
+        "input",
+        calculateTotal
+    );
+
+
+    row.querySelector(
+        ".quantity"
+    ).addEventListener(
+        "input",
+        calculateTotal
+    );
+
+
+    row.querySelector(
+        ".remove-btn"
+    ).addEventListener(
+        "click",
+        function() {
+
+            const rows =
+                document.querySelectorAll(
+                    ".product-row"
+                );
+
+
+            if (rows.length === 1) {
+
+                alert(
+                    "At least one product is required."
+                );
+
+                return;
+
+            }
+
+
+            row.remove();
+
+            calculateTotal();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT
+===================================================== */
+
+document.getElementById(
+    "addProductBtn"
+).addEventListener(
+    "click",
+    function() {
+
+
+        const container =
+            document.getElementById(
+                "productsContainer"
+            );
+
+
+        const firstRow =
+            document.querySelector(
+                ".product-row"
+            );
+
+
+        const newRow =
+            firstRow.cloneNode(true);
+
+
+        newRow.querySelector(
+            ".product-select"
+        ).selectedIndex = 0;
+
+
+        newRow.querySelector(
+            ".product-name"
+        ).value = "";
+
+
+        newRow.querySelector(
+            ".price"
+        ).value = "0";
+
+
+        newRow.querySelector(
+            ".quantity"
+        ).value = "1";
+
+
+        newRow.querySelector(
+            ".amount"
+        ).value = "₹0.00";
+
+
+        container.appendChild(
+            newRow
+        );
+
+
+        attachProductEvents(
+            newRow
+        );
+
+
+        calculateTotal();
+
+    }
+);
+
+
+/* =====================================================
+   PAID AMOUNT
+===================================================== */
+
+document.getElementById(
+    "paid"
+).addEventListener(
+    "input",
+    calculateRemaining
+);
+
+
+/* =====================================================
+   FORM SUBMIT
+===================================================== */
+
+document.getElementById(
+    "billForm"
+).addEventListener(
+    "submit",
+    function(event) {
+
+
+        const rows =
+            document.querySelectorAll(
+                ".product-row"
+            );
+
+
+        let valid = true;
+
+
+        rows.forEach(function(row) {
+
+
+            const select =
+                row.querySelector(
+                    ".product-select"
+                );
+
+
+            if (!select.value) {
+
+                valid = false;
+
+                return;
+
+            }
+
+
+            const option =
+                select.options[
+                    select.selectedIndex
+                ];
+
+
+            row.querySelector(
+                ".product-name"
+            ).value =
+                option.dataset.name || "";
+
+
+            const price =
+                parseFloat(
+                    row.querySelector(
+                        ".price"
+                    ).value
+                ) || 0;
+
+
+            const quantity =
+                parseInt(
+                    row.querySelector(
+                        ".quantity"
+                    ).value
+                ) || 0;
+
+
+            if (price < 0 || quantity <= 0) {
+
+                valid = false;
+
+            }
+
+        });
+
+
+        if (!valid) {
+
+            event.preventDefault();
+
+            alert(
+                "Please select valid products, price and quantity."
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "createButton"
+            );
+
+
+        button.innerText =
+            "⏳ Creating Bill...";
+
+
+        button.disabled = true;
+
+    }
+);
+
+
+/* =====================================================
+   INITIAL EVENTS
+===================================================== */
+
+document
+    .querySelectorAll(".product-row")
+    .forEach(function(row) {
+
+        attachProductEvents(row);
+
+    });
+
+
+calculateTotal();
+
+</script>
+
+
+</body>
+
+</html>

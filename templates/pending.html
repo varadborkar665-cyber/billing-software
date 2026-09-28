@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pending Payments - Billing Software</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f6fa;
+        }
+
+        .header {
+            background: #222;
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            padding: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 8px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+        }
+
+        .pending {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .paid {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .amount {
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <strong>
+        🧾 Billing Software
+    </strong>
+
+    <div>
+
+        👤 {{ session["username"] }}
+
+        &nbsp;&nbsp;
+
+        <a
+            class="logout"
+            href="{{ url_for('logout') }}"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+    <h1>
+        💰 Pending Payments
+    </h1>
+
+
+    <!-- NAVIGATION -->
+
+    <a
+        class="button"
+        href="{{ url_for('dashboard') }}"
+    >
+        🏠 Dashboard
+    </a>
+
+
+    <a
+        class="button"
+        href="{{ url_for('customers') }}"
+    >
+        👥 Customers
+    </a>
+
+
+    <a
+        class="button"
+        href="{{ url_for('create_bill') }}"
+    >
+        🧾 Create Bill
+    </a>
+
+
+    <a
+        class="button"
+        href="{{ url_for('bills') }}"
+    >
+        📋 All Bills
+    </a>
+
+
+    {% if bills %}
+
+    <!-- PENDING TABLE -->
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Bill ID
+                </th>
+
+                <th>
+                    Customer
+                </th>
+
+                <th>
+                    Mobile
+                </th>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Total
+                </th>
+
+                <th>
+                    Paid
+                </th>
+
+                <th>
+                    Remaining
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for bill in bills %}
+
+            <tr>
+
+                <td>
+                    #{{ bill["id"] }}
+                </td>
+
+
+                <td>
+                    <strong>
+                        {{ bill["customer_name"] }}
+                    </strong>
+                </td>
+
+
+                <td>
+                    {{ bill["mobile"] }}
+                </td>
+
+
+                <td>
+                    {{ bill["bill_date"] }}
+                </td>
+
+
+                <td class="amount">
+
+                    ₹{{ "%.2f"|format(bill["total"]) }}
+
+                </td>
+
+
+                <td>
+
+                    ₹{{ "%.2f"|format(bill["paid"]) }}
+
+                </td>
+
+
+                <td class="pending">
+
+                    ₹{{ "%.2f"|format(bill["remaining"]) }}
+
+                </td>
+
+
+                <td>
+
+                    <a
+                        class="button"
+                        href="{{ url_for(
+                            'view_bill',
+                            bill_id=bill['id']
+                        ) }}"
+                    >
+                        View Bill
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+    {% else %}
+
+    <!-- NO PENDING -->
+
+    <div class="empty">
+
+        <h2>
+            ✅ No Pending Payments
+        </h2>
+
+        <p>
+            All customer payments are complete.
+        </p>
+
+        <a
+            class="button"
+            href="{{ url_for('create_bill') }}"
+        >
+            🧾 Create New Bill
+        </a>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

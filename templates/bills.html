@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>All Bills - SALONIX WHOLESALERS ALIYANAGAR</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #1f2937;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+
+            padding: 15px 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.12);
+        }
+
+
+        .logo {
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .shop-name {
+
+            font-size: 13px;
+
+            margin-top: 3px;
+
+            opacity: .9;
+        }
+
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .logout {
+
+            color: white;
+
+            text-decoration: none;
+
+            border: 1px solid
+                rgba(255,255,255,.5);
+
+            padding: 7px 12px;
+
+            border-radius: 7px;
+        }
+
+
+        .logout:hover {
+
+            background: rgba(255,255,255,.15);
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            background: white;
+
+            padding: 12px 20px;
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .navbar a {
+
+            text-decoration: none;
+
+            color: #475569;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        .navbar a:hover {
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+        }
+
+
+        .navbar .active {
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+        }
+
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 30px 18px;
+        }
+
+
+        .page-title h1 {
+
+            margin-bottom: 5px;
+        }
+
+
+        .page-title p {
+
+            color: #64748b;
+
+            margin-top: 0;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .card {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 6px 25px
+                rgba(15,23,42,.08);
+
+            margin-top: 20px;
+
+            overflow-x: auto;
+        }
+
+
+        /* ================= TABLE ================= */
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 950px;
+        }
+
+
+        th {
+
+            background: #f1f5f9;
+
+            color: #334155;
+
+            font-size: 14px;
+
+            padding: 13px 10px;
+
+            border-bottom:
+                1px solid #dbe2ea;
+
+            text-align: left;
+
+            white-space: nowrap;
+        }
+
+
+        td {
+
+            padding: 13px 10px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            font-size: 14px;
+
+            vertical-align: middle;
+        }
+
+
+        tr:hover {
+
+            background: #f8fafc;
+        }
+
+
+        .bill-number {
+
+            font-weight: bold;
+
+            color: #4f46e5;
+        }
+
+
+        .customer {
+
+            font-weight: bold;
+        }
+
+
+        .mobile {
+
+            color: #64748b;
+        }
+
+
+        .amount {
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .status-paid {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .status-pending {
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .paid-amount {
+
+            color: #16a34a;
+
+            font-weight: bold;
+        }
+
+
+        .remaining-amount {
+
+            color: #dc2626;
+
+            font-weight: bold;
+        }
+
+
+        .zero-amount {
+
+            color: #16a34a;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= BUTTONS ================= */
+
+        .action-area {
+
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+
+            border: none;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            padding: 8px 11px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+        }
+
+
+        .view-btn {
+
+            background: #4f46e5;
+
+            color: white;
+        }
+
+
+        .view-btn:hover {
+
+            background: #4338ca;
+        }
+
+
+        .paid-btn {
+
+            background: #16a34a;
+
+            color: white;
+        }
+
+
+        .paid-btn:hover {
+
+            background: #15803d;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 50px 20px;
+
+            background: white;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 6px 25px
+                rgba(15,23,42,.08);
+        }
+
+
+        .empty h2 {
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty p {
+
+            color: #64748b;
+
+            margin-bottom: 25px;
+        }
+
+
+        .create-btn {
+
+            display: inline-block;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= FLASH ================= */
+
+        .flash {
+
+            padding: 12px 15px;
+
+            margin-bottom: 15px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .flash-success {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .flash-error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 700px) {
+
+            .header {
+
+                padding: 12px 15px;
+            }
+
+
+            .logo {
+
+                font-size: 16px;
+            }
+
+
+            .shop-name {
+
+                display: none;
+            }
+
+
+            .user-area {
+
+                font-size: 12px;
+            }
+
+
+            .navbar {
+
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .navbar a {
+
+                text-align: center;
+            }
+
+
+            .container {
+
+                padding: 20px 12px;
+            }
+
+
+            .card {
+
+                padding: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+
+    <div>
+
+        <div class="logo">
+
+            🧾 SmartBill
+
+        </div>
+
+
+        <div class="shop-name">
+
+            SALONIX WHOLESALERS ALIYANAGAR
+
+        </div>
+
+    </div>
+
+
+    <div class="user-area">
+
+        👤 {{ session.get("username") }}
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+
+    <a href="{{ url_for('dashboard') }}">
+
+        🏠 Dashboard
+
+    </a>
+
+
+    <a href="{{ url_for('customers') }}">
+
+        👥 Customers
+
+    </a>
+
+
+    <a href="{{ url_for('products') }}">
+
+        📦 Products
+
+    </a>
+
+
+    <a href="{{ url_for('create_bill') }}">
+
+        🧾 Create Bill
+
+    </a>
+
+
+    <a href="{{ url_for('pending') }}">
+
+        💰 Pending
+
+    </a>
+
+
+    <a
+        href="{{ url_for('bills') }}"
+        class="active"
+    >
+
+        📋 Bills
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+
+            📋 All Bills
+
+        </h1>
+
+
+        <p>
+
+            SALONIX WHOLESALERS ALIYANAGAR -
+            Bill History
+
+        </p>
+
+    </div>
+
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div
+                    class="flash
+                    {% if category == 'success' %}
+                        flash-success
+                    {% else %}
+                        flash-error
+                    {% endif %}"
+                >
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+
+    {% if bills %}
+
+
+    <!-- =================================================
+         BILL TABLE
+    ================================================= -->
+
+    <div class="card">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Bill No.
+                    </th>
+
+
+                    <th>
+                        Customer
+                    </th>
+
+
+                    <th>
+                        Mobile
+                    </th>
+
+
+                    <th>
+                        Date
+                    </th>
+
+
+                    <th>
+                        Total
+                    </th>
+
+
+                    <th>
+                        Paid
+                    </th>
+
+
+                    <th>
+                        Remaining
+                    </th>
+
+
+                    <th>
+                        Status
+                    </th>
+
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+
+
+                {% for bill in bills %}
+
+
+                <tr>
+
+
+                    <!-- BILL NUMBER -->
+
+                    <td>
+
+                        <span class="bill-number">
+
+                            #{{ bill["id"] }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- CUSTOMER -->
+
+                    <td>
+
+                        <span class="customer">
+
+                            {{ bill["customer_name"] }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- MOBILE -->
+
+                    <td>
+
+                        <span class="mobile">
+
+                            {{ bill["mobile"] }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- DATE -->
+
+                    <td>
+
+                        {{ bill["bill_date"] }}
+
+                    </td>
+
+
+
+                    <!-- TOTAL -->
+
+                    <td>
+
+                        <span class="amount">
+
+                            ₹{{ "%.2f"|format(
+                                bill["total"]
+                            ) }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- PAID -->
+
+                    <td>
+
+                        <span class="paid-amount">
+
+                            ₹{{ "%.2f"|format(
+                                bill["paid"]
+                            ) }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- REMAINING -->
+
+                    <td>
+
+
+                        {% if bill["remaining"] > 0 %}
+
+                            <span class="remaining-amount">
+
+                                ₹{{ "%.2f"|format(
+                                    bill["remaining"]
+                                ) }}
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="zero-amount">
+
+                                ₹0.00
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </td>
+
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+
+                        {% if bill["payment_status"] == "PAID" %}
+
+
+                            <span
+                                class="status status-paid"
+                            >
+
+                                ✓ PAID
+
+                            </span>
+
+
+                        {% else %}
+
+
+                            <span
+                                class="status status-pending"
+                            >
+
+                                ⏳ PENDING
+
+                            </span>
+
+
+                        {% endif %}
+
+
+                    </td>
+
+
+
+                    <!-- ACTION -->
+
+                    <td>
+
+
+                        <div class="action-area">
+
+
+                            <!-- VIEW -->
+
+                            <a
+                                class="btn view-btn"
+                                href="{{ url_for(
+                                    'view_bill',
+                                    bill_id=bill['id']
+                                ) }}"
+                            >
+
+                                👁 View
+
+                            </a>
+
+
+
+                            <!-- PAYMENT RECEIVED -->
+
+                            {% if bill["remaining"] > 0 %}
+
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for(
+                                        'mark_paid',
+                                        bill_id=bill['id']
+                                    ) }}"
+                                    style="margin:0;"
+                                    onsubmit="return confirm(
+                                        'Confirm that payment has been received for this bill?'
+                                    );"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="btn paid-btn"
+                                    >
+
+                                        ✓ Payment Received
+
+                                    </button>
+
+                                </form>
+
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- =================================================
+         NO BILLS
+    ================================================= -->
+
+    <div class="empty">
+
+
+        <h2>
+
+            📋 No Bills Found
+
+        </h2>
+
+
+        <p>
+
+            You have not created any bills yet.
+
+        </p>
+
+
+        <a
+            class="create-btn"
+            href="{{ url_for('create_bill') }}"
+        >
+
+            ➕ Create First Bill
+
+        </a>
+
+
+    </div>
+
+
+    {% endif %}
+
+
+</main>
+
+
+</body>
+
+</html>

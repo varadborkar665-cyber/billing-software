@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | SmartBill</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8fafc,
+                    #e0f2fe
+                );
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================
+           ANIMATED BACKGROUND
+        ========================= */
+
+        .background {
+
+            position: fixed;
+
+            inset: 0;
+
+            overflow: hidden;
+
+            z-index: -1;
+
+        }
+
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            opacity: 0.30;
+
+            filter: blur(2px);
+
+            animation:
+                float 8s ease-in-out infinite;
+
+        }
+
+
+        .circle1 {
+
+            width: 260px;
+
+            height: 260px;
+
+            background: #6366f1;
+
+            top: -90px;
+
+            left: -90px;
+
+        }
+
+
+        .circle2 {
+
+            width: 320px;
+
+            height: 320px;
+
+            background: #38bdf8;
+
+            right: -120px;
+
+            bottom: -120px;
+
+            animation-delay: 2s;
+
+        }
+
+
+        .circle3 {
+
+            width: 170px;
+
+            height: 170px;
+
+            background: #a78bfa;
+
+            right: 15%;
+
+            top: 15%;
+
+            animation-delay: 4s;
+
+        }
+
+
+        @keyframes float {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-25px)
+                    rotate(10deg);
+
+            }
+
+        }
+
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.94
+                );
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 24px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.16
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.8
+                );
+
+            animation:
+                cardEntry 0.7s ease;
+
+        }
+
+
+        @keyframes cardEntry {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(35px)
+                    scale(0.96);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin:
+                0 auto 18px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 36px;
+
+            border-radius: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 12px 28px
+                rgba(
+                    79,
+                    70,
+                    229,
+                    0.30
+                );
+
+            animation:
+                logoFloat 3s ease-in-out infinite;
+
+        }
+
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-6px);
+
+            }
+
+        }
+
+
+        /* =========================
+           BRAND
+        ========================= */
+
+        .brand {
+
+            text-align: center;
+
+            font-size: 28px;
+
+            font-weight: 800;
+
+            color: #111827;
+
+        }
+
+
+        .brand span {
+
+            color: #4f46e5;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-top: 7px;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        /* =========================
+           FLASH MESSAGE
+        ========================= */
+
+        .alert {
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            margin-bottom: 18px;
+
+            font-size: 14px;
+
+            animation:
+                alertEntry 0.4s ease;
+
+        }
+
+
+        @keyframes alertEntry {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-8px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .alert.error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border:
+                1px solid #fecaca;
+
+        }
+
+
+        .alert.success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            border:
+                1px solid #bbf7d0;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #334155;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .input-box {
+
+            position: relative;
+
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 17px;
+
+            z-index: 2;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 52px;
+
+            border:
+                1.5px solid #dbe2ea;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: #f8fafc;
+
+            padding:
+                0 45px 0 44px;
+
+            font-size: 15px;
+
+            color: #111827;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        input:focus {
+
+            background: white;
+
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(
+                    99,
+                    102,
+                    241,
+                    0.10
+                );
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =========================
+           SHOW PASSWORD
+        ========================= */
+
+        .password-eye {
+
+            position: absolute;
+
+            right: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            cursor: pointer;
+
+            font-size: 17px;
+
+            color: #64748b;
+
+            user-select: none;
+
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 53px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 10px 22px
+                rgba(
+                    79,
+                    70,
+                    229,
+                    0.25
+                );
+
+            transition:
+                all 0.25s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(
+                    79,
+                    70,
+                    229,
+                    0.32
+                );
+
+        }
+
+
+        .login-button:active {
+
+            transform:
+                scale(0.98);
+
+        }
+
+
+        /* Button shine */
+
+        .login-button::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 60%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.25
+                    ),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            animation:
+                shine 3.5s infinite;
+
+        }
+
+
+        @keyframes shine {
+
+            0% {
+
+                left: -100%;
+
+            }
+
+            35% {
+
+                left: 130%;
+
+            }
+
+            100% {
+
+                left: 130%;
+
+            }
+
+        }
+
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+        .register-section {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .register-section p {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .register-button {
+
+            display: inline-block;
+
+            padding:
+                10px 18px;
+
+            border:
+                1.5px solid #6366f1;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            color: #4f46e5;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .register-button:hover {
+
+            background: #4f46e5;
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding: 12px;
+
+            }
+
+
+            .login-card {
+
+                padding: 28px 20px;
+
+                border-radius: 20px;
+
+            }
+
+
+            .brand {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     BACKGROUND
+========================= -->
+
+<div class="background">
+
+    <div class="circle circle1"></div>
+
+    <div class="circle circle2"></div>
+
+    <div class="circle circle3"></div>
+
+</div>
+
+
+
+<!-- =========================
+     LOGIN CARD
+========================= -->
+
+<div class="login-card">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        🧾
+
+    </div>
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        Smart<span>Bill</span>
+
+    </div>
+
+
+    <div class="subtitle">
+
+        Shop Billing & Management System
+
+    </div>
+
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages =
+        get_flashed_messages(
+            with_categories=true
+        )
+    %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="alert {{ category }}">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+
+    <!-- LOGIN FORM -->
+
+    <form
+        method="POST"
+        action="{{ url_for('login') }}"
+    >
+
+
+        <!-- USERNAME -->
+
+        <div class="form-group">
+
+            <label for="username">
+
+                Username
+
+            </label>
+
+
+            <div class="input-box">
+
+                <span class="input-icon">
+
+                    👤
+
+                </span>
+
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+
+                Password
+
+            </label>
+
+
+            <div class="input-box">
+
+                <span class="input-icon">
+
+                    🔒
+
+                </span>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <span
+                    class="password-eye"
+                    onclick="togglePassword()"
+                    id="eye"
+                >
+
+                    👁
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOGIN -->
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+
+            🔐 &nbsp; Login to SmartBill
+
+        </button>
+
+
+    </form>
+
+
+
+    <!-- REGISTER -->
+
+    <div class="register-section">
+
+        <p>
+
+            New to SmartBill?
+
+        </p>
+
+
+        <a
+            href="{{ url_for('register') }}"
+            class="register-button"
+        >
+
+            ➕ Create New Account
+
+        </a>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        🔒 Secure &nbsp; • &nbsp;
+        📱 Mobile Friendly &nbsp; • &nbsp;
+        🧾 Smart Billing
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================
+   SHOW / HIDE PASSWORD
+========================================= */
+
+function togglePassword() {
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+    const eye =
+        document.getElementById(
+            "eye"
+        );
+
+
+    if (
+        password.type === "password"
+    ) {
+
+        password.type = "text";
+
+        eye.textContent = "🙈";
+
+    }
+
+    else {
+
+        password.type = "password";
+
+        eye.textContent = "👁";
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
